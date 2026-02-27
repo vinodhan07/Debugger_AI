@@ -1,0 +1,23 @@
+[
+  {
+    "question": "What is Project Phoenix?",
+    "score": 75.0,
+    "citations": 0,
+    "latency": 25.13,
+    "pass": false
+  },
+  {
+    "question": "Who are the team leads for Project Phoenix?",
+    "score": 0.0,
+    "citations": 0,
+    "latency": 370.84,
+    "pass": false
+  },
+  {
+    "question": "Write a python function to add two numbers.",
+    "score": 0.0,
+    "citations": 0,
+    "latency": 199.47,
+    "pass": false
+  }
+]

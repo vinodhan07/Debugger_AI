@@ -1,0 +1,4 @@
+The project code name is "Project Phoenix". 
+The primary objective of Project Phoenix is to build an autonomous agentic system for debugging code.
+The team leads are Alice and Bob.
+The project is scheduled for completion by December 2026.

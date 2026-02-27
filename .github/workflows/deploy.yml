@@ -1,0 +1,81 @@
+name: Project Phoenix CI/CD
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test_and_eval:
+    runs-on: ubuntu-latest
+    
+    services:
+      postgres:
+        image: ankane/pgvector
+        env:
+          POSTGRES_USER: user
+          POSTGRES_PASSWORD: password
+          POSTGRES_DB: db
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+      
+      ollama:
+        image: ollama/ollama
+        ports:
+          - 11434:11434
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r backend/requirements.txt
+          pip install pytest requests numpy
+
+      - name: Wait for Ollama and Pull Model
+        run: |
+          sleep 10
+          curl -X POST http://localhost:11434/api/pull -d '{"name": "llama3"}'
+
+      - name: Run Migrations
+        env:
+          DATABASE_URL: postgresql://user:password@localhost:5432/db
+        run: |
+          cd backend
+          alembic upgrade head
+
+      - name: Run Unit Tests
+        env:
+          DATABASE_URL: postgresql://user:password@localhost:5432/db
+        run: |
+          pytest
+
+      - name: Start Backend for Evals
+        env:
+          DATABASE_URL: postgresql://user:password@localhost:5432/db
+          OLLAMA_HOST: http://localhost:11434
+        run: |
+          cd backend
+          nohup uvicorn main:app --host 0.0.0.0 --port 8000 &
+          sleep 5
+
+      - name: Run Automated Evaluations
+        run: |
+          python backend/evals/run_eval.py
+
+      - name: Check Eval Success
+        run: |
+          # Custom logic to fail CI if pass rate is too low
+          python -c "import json; res = json.load(open('backend/evals/eval_results.json')); exit(0 if res['pass_rate'] >= 0.75 else 1)"

@@ -1,0 +1,22 @@
+[
+    {
+        "question": "What is Project Phoenix?",
+        "expected_answer": "Project Phoenix is an autonomous agentic RAG platform designed to provide secure, multi-user document retrieval and code generation.",
+        "category": "general"
+    },
+    {
+        "question": "How do I register a new user?",
+        "expected_answer": "You can register a new user by sending a POST request to /auth/register with email and password parameters.",
+        "category": "auth"
+    },
+    {
+        "question": "What vector index does the platform use for optimization?",
+        "expected_answer": "The platform uses pgvector with an IVFFlat index for optimized document retrieval.",
+        "category": "technical"
+    },
+    {
+        "question": "Write a python function to calculate fibonacci numbers.",
+        "expected_answer": "A standard recursive or iterative python function for fibonacci.",
+        "category": "code"
+    }
+]
