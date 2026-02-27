@@ -59,6 +59,7 @@ jobs:
       - name: Run Unit Tests
         env:
           DATABASE_URL: postgresql://user:password@localhost:5432/db
+          PYTHONPATH: .
         run: |
           pytest
 
