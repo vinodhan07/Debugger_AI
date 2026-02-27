@@ -7,8 +7,12 @@ from sqlalchemy import pool
 
 from alembic import context
 
-# Add project root to python path
-sys.path.append(os.getcwd())
+from os.path import abspath, dirname
+
+# Add project root to python path dynamically based on this file's location
+project_root = dirname(dirname(dirname(abspath(__file__))))
+if project_root not in sys.path:
+    sys.path.insert(0, project_root)
 
 from backend.database import Base
 from backend.models import Chat  # Ensure all models are imported
