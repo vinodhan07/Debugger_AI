@@ -15,7 +15,7 @@ const inter = Inter({
 const GOOGLE_CLIENT_ID = "1055555555555-google-client-id-here.apps.googleusercontent.com";
 
 export const metadata: Metadata = {
-  title: "Project Phoenix — AI Debug Assistant",
+  title: "Debuggers AI — Enterprise Multi-Agent Platform",
   description: "Enterprise-grade RAG platform with streaming AI agents, document ingestion, and intelligent debugging.",
 };
 

@@ -53,7 +53,7 @@ export default function LoginPage() {
                         {isRegister ? "Create account" : "Welcome back"}
                     </h1>
                     <p className="text-sm text-[var(--color-text-muted)] mt-1.5 font-medium">
-                        {isRegister ? "Start your journey with Project Phoenix" : "Continue your AI-assisted development"}
+                        {isRegister ? "Start your journey with Debuggers AI" : "Continue your AI-assisted development"}
                     </p>
                 </div>
 

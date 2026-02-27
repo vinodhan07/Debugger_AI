@@ -3,7 +3,7 @@ import json
 
 def test_streaming():
     url = "http://localhost:8000/agent"
-    payload = {"question": "What is Project Phoenix?"}
+    payload = {"question": "What is Debuggers AI?"}
     
     print(f"Testing streaming from {url}...")
     

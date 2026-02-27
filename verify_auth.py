@@ -12,7 +12,7 @@ def test_conversations_and_history():
 
     print("\n--- 2. Starting New Conversation ---")
     # First question to establish context
-    agent_resp = requests.post(f"{BASE_URL}/agent", json={"question": "What is Project Phoenix?"}, headers=headers, stream=True)
+    agent_resp = requests.post(f"{BASE_URL}/agent", json={"question": "What is Debuggers AI?"}, headers=headers, stream=True)
     conv_id = None
     for line in agent_resp.iter_lines():
         if line:

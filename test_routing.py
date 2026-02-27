@@ -13,7 +13,7 @@ def test_routing():
         if line: print(line.decode('utf-8'))
 
     print("\n--- 2. Testing QA Intent (Project Goals) ---")
-    resp_qa = requests.post(f"{BASE_URL}/agent", json={"question": "What are the main goals of Project Phoenix?"}, headers=headers, stream=True)
+    resp_qa = requests.post(f"{BASE_URL}/agent", json={"question": "What are the main goals of Debuggers AI?"}, headers=headers, stream=True)
     for line in resp_qa.iter_lines():
         if line: print(line.decode('utf-8'))
 
