@@ -44,7 +44,7 @@ from google.oauth2 import id_token
 from google.auth.transport import requests as google_requests
 
 # OAuth Configuration
-GOOGLE_CLIENT_ID = os.getenv("GOOGLE_CLIENT_ID", "212650704696-in08fprrggefriiej41fofr2er5qpfl5.apps.googleusercontent.com")
+GOOGLE_CLIENT_ID = os.getenv("GOOGLE_CLIENT_ID", "")
 
 def verify_google_token(token: str):
     try:

@@ -1,0 +1,33 @@
+services:
+  db:
+    image: ankane/pgvector
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: db
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  ollama:
+    image: ollama/ollama
+    volumes:
+      - ollama_data:/root/.ollama
+
+  backend:
+    build:
+      context: ./backend
+    ports:
+      - "8000:8000"
+    environment:
+      DATABASE_URL: postgresql://user:password@db:5432/db
+    depends_on:
+      - db
+      - ollama
+    volumes:
+      - ./backend:/app/backend # Hot-reload for dev
+
+volumes:
+  postgres_data:
+  ollama_data:
